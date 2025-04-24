@@ -15,8 +15,10 @@
             {% for post in posts %}
                 <li>
                     <a href="/blog/read/{{ post.id }}/">{{ post.title }}</a> - {{ post.content }}
-                    <a href="{% url 'blog-update' post.id %}">✏ Edit</a>
-                    | <a href="{% url 'blog-delete' post.id %}" onclick="return confirm('Yakin mau hapus?')">🗑 Hapus</a>
+                    {% comment %}
+                    <!-- <a href="{% url 'blog-update' post.id %}">✏ Edit</a>
+                    | <a href="{% url 'blog-delete' post.id %}" onclick="return confirm('Yakin mau hapus?')">🗑 Hapus</a> -->
+                    {% endcomment %}
                 </li>
             {% endfor %}
         </ul>
