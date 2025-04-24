@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  postgresql:
+    image: docker.io/postgres:latest
+    environment:
+      POSTGRES_USER: edo
+      POSTGRES_PASSWORD: edo
+      POSTGRES_DB: sclass
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgresql:/var/lib/postgresql/data
+
+volumes:
+  postgresql:
+    driver: local
