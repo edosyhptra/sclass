@@ -14,16 +14,16 @@ from pathlib import Path
 import os 
 import environ
 
+
 env = environ.Env(
-    # set casting, default value
-    DEBUG=(bool, True),
-    DB_NAME=(str, ''),
-    DB_USER=(str, ''),
-    DB_PASSWORD=(str, ''),
-    DB_HOST=(str, ''),
-    DB_PORT=(str, ''),
+#     DEBUG=(bool, False),
     SECRET_KEY=(str, ''),
-    ALLOWED_HOSTS=(list, ['*']),
+#     ALLOWED_HOSTS=(list, ['*']),
+#     DB_NAME=(str, ''),
+#     DB_USER=(str, ''),
+#     DB_PASSWORD=(str, ''),
+#     DB_HOST=(str, ''),
+#     DB_PORT=(int, 0)
 )
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -39,9 +39,9 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env('DEBUG')
+DEBUG = True # env('DEBUG')
 
-ALLOWED_HOSTS = env('ALLOWED_HOSTS')
+ALLOWED_HOSTS = ['*'] #env('ALLOWED_HOSTS')
 
 
 # Application definition
@@ -53,7 +53,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'app_blog'
+    'app_blog',
 ]
 
 MIDDLEWARE = [
@@ -92,11 +92,11 @@ WSGI_APPLICATION = 'sclass.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env('DB_NAME'),
-        'USER': env('DB_USER'),
-        'PASSWORD': env('DB_PASSWORD'),
-        'HOST': env('DB_HOST'),
-        'PORT': env('DB_PORT'),
+        'NAME': 'sclass',
+        'USER': 'edo', #env('DB_USER'),
+        'PASSWORD': 'edo', #env('DB_PASSWORD'),
+        'HOST': 'localhost', #env('DB_HOST'),
+        'PORT': 5432, #env('DB_PORT'),
     }
 }
 
