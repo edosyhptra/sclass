@@ -16,14 +16,14 @@ import environ
 
 
 env = environ.Env(
-#     DEBUG=(bool, False),
     SECRET_KEY=(str, ''),
-#     ALLOWED_HOSTS=(list, ['*']),
-#     DB_NAME=(str, ''),
-#     DB_USER=(str, ''),
-#     DB_PASSWORD=(str, ''),
-#     DB_HOST=(str, ''),
-#     DB_PORT=(int, 0)
+    DEBUG=(bool, False),
+    ALLOWED_HOSTS=(list, ['*']),
+    DB_NAME=(str, ''),
+    DB_HOST=(str, ''),
+    DB_PORT=(int, 0),
+    DB_USER=(str, ''),
+    DB_PASSWORD=(str, '')
 )
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -36,12 +36,12 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-4&5#k^+m=6wv18p+h(+6bpalno$-rdn*mln($t197-#9(401r9' #env('SECRET_KEY')
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True # env('DEBUG')
 
-ALLOWED_HOSTS = ['*'] #env('ALLOWED_HOSTS')
+ALLOWED_HOSTS = env('ALLOWED_HOSTS')
 
 
 # Application definition
@@ -93,11 +93,11 @@ WSGI_APPLICATION = 'sclass.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'sclass',
-        'USER': 'edo', #env('DB_USER'),
-        'PASSWORD': 'edo', #env('DB_PASSWORD'),
-        'HOST': 'localhost', #env('DB_HOST'),
-        'PORT': 5432, #env('DB_PORT'),
+        'NAME': env('DB_NAME'),
+        'USER': env('DB_USER'),
+        'PASSWORD': env('DB_PASSWORD'),
+        'HOST': env('DB_HOST'),
+        'PORT': env('DB_PORT'),
     }
 }
 
